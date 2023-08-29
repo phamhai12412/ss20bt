@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head">
+</head>
+<body>
+<h3>Movie Management</h3>
+<p>
+    <a th:href="@{/upload}">
+        Add new movie
+    </a>
+</p>
+
+<table id = "movies">
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Image</th>
+        <th>Video</th>
+        <th colspan="3">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="movie : ${movies}">
+
+        <td th:text="${movie.title}"></td>
+        <td th:text="${movie.description}"></td>
+        <td>
+            <img th:src="@{${'/image/' + movie.getImageURL()[0]}}" alt="image" width="100" height="100">
+        </td>
+        <td>
+            <video controls width="400">
+                <source th:src="@{${'/video/' + movie.videoURL}}" type="video/mp4">
+            </video>
+        </td>
+        <td>View</td>
+        <td>Edit</td>
+        <td>Delete</td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head"></head>
+<body>
+<h3>Add Movie</h3>
+<p>
+  <a th:href="@{/movies}">
+    Back to movie list
+  </a>
+</p>
+<p th:text="${message}"></p>
+<div id="form">
+  <form th:action="@{/save}" th:object="${uploadMovie}"
+        method="POST" novalidate="novalidate" enctype="multipart/form-data">
+    <input type="hidden" th:field="*{id}"/>
+    <div>
+      <label>Title</label>
+      <input type="text" th:field="*{title}"/>
+    </div>
+    <div>
+      <label>Description</label>
+      <input type="text" th:field="*{description}"/>
+    </div>
+    <div>
+      <label>Image</label>
+      <input type="file" th:field="*{image}" multiple/>
+    </div>
+    <div>
+      <label>Video</label>
+      <input type="file" th:field="*{video}"/>
+    </div>
+    <input type="submit" value="Upload"/>
+  </form>
+</div>
+
+</body>
+</html>
